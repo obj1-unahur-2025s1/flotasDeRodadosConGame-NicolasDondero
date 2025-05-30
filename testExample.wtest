@@ -1,9 +1,41 @@
-import example.pepita
+import municipalidad.*
 
-describe "group of tests for pepita" {
-
-  test "pepita has initial energy" {
-    assert.equals(100, pepita.energy())
+describe "Tests para municipalidad" {
+    var deportes = new Dependencia(empleados = 45)
+    var cultura = new Dependencia(empleados = 31)
+    var cachito = new Corsa(color="Rojo")
+    var corsa2 = new Corsa(color="Azul")
+    var corsa3 = new Corsa(color="Verde")
+    var kwid1 = new Kwid(tieneTanque=true)
+    var kwid2 = new Kwid(tieneTanque=false)
+    var traffic1 = new Trafic(interior=interiorPopular, motor=motorBataton)
+    var autoEspecial1 = new AutoEspecial(capacidad=5, velocidadMaxima=160, peso=1200, color="Beige")
+    
+  test "Se agregan 5 autos a deportes, y se testean cosas" {
+    deportes.agregarAFlota(cachito)
+    deportes.agregarAFlota(corsa2)
+    deportes.agregarAFlota(corsa3)
+    deportes.agregarAFlota(kwid1)
+    deportes.agregarAFlota(autoEspecial1)
+    assert.equals(deportes.pesoTotalFlota(), 6450)
+    assert.that(deportes.estaBienEquipada())
+    assert.equals(deportes.capacidadTotalEnColor("Azul"), 7)
+    assert.equals(deportes.colorDelRodadoMasRapido(),  "Beige")
+    assert.that(deportes.esGrande())
+    assert.equals(deportes.capacidadFaltante(), 25)
   }
 
+  test "Se agregan 5 autos a cultura, y se testean cosas" {
+    cultura.agregarAFlota(cachito)
+    cultura.agregarAFlota(kwid1)
+    cultura.agregarAFlota(kwid1)
+    cultura.agregarAFlota(kwid2)
+    cultura.agregarAFlota(traffic1)
+    assert.equals(cultura.pesoTotalFlota(), 6450)
+    assert.that(cultura.estaBienEquipada())
+    assert.equals(cultura.capacidadTotalEnColor("Azul"), 7)
+    assert.equals(cultura.colorDelRodadoMasRapido(),  "Beige")
+    assert.that(cultura.esGrande())
+    assert.equals(cultura.capacidadFaltante(), 25)
+  }
 }
